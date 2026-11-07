@@ -78,6 +78,8 @@ test('each case study offers an accessible back arrow with a projects fallback',
 test('back arrow remains at the side of the viewport when scrolling', () => {
   const page = readFileSync('src/pages/projects/[slug].astro', 'utf8');
   assert.match(page, /\.back-link\s*\{[^}]*position\s*:\s*fixed/);
+  assert.match(page, /\.back-link\s*\{[^}]*top\s*:\s*90px/);
+  assert.match(page, /\.back-link\s*\{[^}]*background\s*:\s*#edf0f7/);
   assert.doesNotMatch(page, /project-title-row/);
 });
 
