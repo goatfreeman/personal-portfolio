@@ -5,73 +5,43 @@ import Footer from '../../components/Footer.astro';
 import projects from '../../data/projects.json';
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 ---
-<!doctype html><html lang="en"><head><BaseHead title="Projects | Matthew Ho" description="Explore Matthew Ho’s project collections." />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style></head><body><Header /><main><h1>Projects</h1><p>A home for the questions, experiments, and insights along the way.</p><section><h2>ITCS 3162 portfolio</h2><p>Four course projects exploring data, models, and the limits of their conclusions.</p><ul>{projects.map(p => <li><a href={`${base}projects/${p.slug}/`}><img width="720" src={`${base}${p.charts[0].src}`} alt={p.charts[0].alt} /><h4 class="title">{p.title}</h4><p class="date">{p.number} / {p.category}</p></a><p>{p.deck}</p></li>)}</ul></section></main><Footer /></body></html>
+<!doctype html>
+<html lang="en">
+  <head><BaseHead title="Projects | Matthew Ho" description="Explore Matthew Ho’s project collections." /></head>
+  <body>
+    <Header />
+    <main>
+      <h1>Projects</h1>
+      <p>A home for the questions, experiments, and insights along the way.</p>
+      <section class="project-collection" aria-labelledby="collection-title">
+        <div class="collection-heading">
+          <div><p class="collection-label">PROJECT COLLECTION / 01</p><h2 id="collection-title">ITCS 3162 portfolio</h2><p>Four course projects exploring data, models, and the limits of their conclusions.</p></div>
+          <span class="collection-count">4 PROJECTS</span>
+        </div>
+        <div class="project-grid">
+          {projects.map(p => <article class="project-block"><p class="category">{p.number} / {p.category}</p><h3><a href={`${base}projects/${p.slug}/`}>{p.title}</a></h3><p class="description">{p.deck}</p><a class="project-link" href={`${base}projects/${p.slug}/`}>View project <span aria-hidden="true">→</span><span class="sr-only">: {p.title}</span></a></article>)}
+        </div>
+      </section>
+    </main>
+    <Footer />
+  </body>
+</html>
+<style>
+main { width: 960px; }
+.project-collection { background: rgba(var(--gray-light), 35%); border: 1px solid rgb(var(--gray-light)); border-radius: 14px; padding: 1.5rem; }
+.collection-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: start; }
+.collection-heading h2 { font-size: 1.7rem; }
+.collection-heading p:not(.collection-label) { margin: .5rem 0 1.4rem; }
+.collection-label, .collection-count, .category, .project-link { font-size: .72rem; font-weight: bold; letter-spacing: .06em; }
+.collection-label, .category { margin: 0 0 .7rem; color: rgb(var(--gray-dark)); }
+.collection-count { white-space: nowrap; color: rgb(var(--gray-dark)); }
+.project-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.project-block { background: white; border: 1px solid rgb(var(--gray-light)); border-radius: 10px; padding: 1.3rem; display: flex; flex-direction: column; }
+.project-block h3 { font-size: 1.25rem; margin: 0 0 .65rem; }
+.project-block h3 a { color: rgb(var(--black)); text-decoration: none; }
+.project-block h3 a:hover { color: var(--accent); text-decoration: underline; }
+.description { font-size: .9rem; margin: 0 0 1rem; }
+.project-link { margin-top: auto; text-transform: uppercase; text-decoration: none; }
+.project-link:hover { text-decoration: underline; }
+@media (max-width: 720px) { .project-collection { padding: 1rem; } .collection-heading { flex-direction: column; gap: .3rem; } .project-grid { grid-template-columns: 1fr; } }
+</style>

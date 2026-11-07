@@ -21,10 +21,11 @@ const active = path.startsWith(`${base}projects`) ? 'projects' : path.startsWith
 		text-decoration: none;
 	}
 	nav {
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr auto 1fr;
 		align-items: center;
-		justify-content: space-between;
 	}
+	.internal-links { display: flex; justify-content: center; }
 	nav a {
 		padding: 1em 0.5em;
 		color: rgb(var(--black));
@@ -40,8 +41,9 @@ const active = path.startsWith(`${base}projects`) ? 'projects' : path.startsWith
 		display: flex;
 	}
 	@media (max-width: 720px) {
-        nav { flex-wrap: wrap; }
-        .internal-links { display: flex; flex-wrap: wrap; }
+        nav { grid-template-columns: 1fr; justify-items: center; }
+        nav h2 { padding-top: .5em; }
+        .internal-links { display: flex; justify-content: center; flex-wrap: wrap; }
 		.social-links {
 			display: none;
 		}

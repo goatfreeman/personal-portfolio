@@ -70,6 +70,17 @@ test('home labels project ordering without claiming dates', () => {
   assert.match(home, /Project dates have not been provided/);
 });
 
+test('projects are grouped in a collection of distinct project blocks', () => {
+  const html = readFileSync('dist/projects/index.html', 'utf8');
+  assert.match(html, /class="project-collection"/);
+  assert.equal((html.match(/class="project-block"/g) || []).length, 4);
+});
+
+test('navigation uses a centered menu layout', () => {
+  const header = readFileSync('src/components/Header.astro', 'utf8');
+  assert.match(header, /grid-template-columns:\s*1fr auto 1fr/);
+});
+
 test('starter visual language replaces the custom portfolio skin', () => {
   const css = readFileSync('src/styles/global.css', 'utf8');
   const header = readFileSync('src/components/Header.astro', 'utf8');
