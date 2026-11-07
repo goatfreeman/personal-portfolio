@@ -65,6 +65,15 @@ test('about page presents resume credentials and a linked GitHub profile picture
   assert.match(html, /UNC Charlotte/);
 });
 
+test('each case study offers an accessible back arrow with a projects fallback', () => {
+  for (const slug of slugs) {
+    const html = readFileSync(`dist/projects/${slug}/index.html`, 'utf8');
+    assert.match(html, /class="back-link"/);
+    assert.match(html, /href="\/personal-portfolio\/projects\/"[^>]*class="back-link"/);
+    assert.match(html, /Back/);
+  }
+});
+
 test('home labels project ordering without claiming dates', () => {
   const home = readFileSync('dist/index.html', 'utf8');
   assert.match(home, /Project dates have not been provided/);
