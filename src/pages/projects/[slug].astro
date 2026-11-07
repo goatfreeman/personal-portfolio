@@ -8,7 +8,7 @@ const { project: p } = Astro.props;
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 ---
 <!doctype html><html lang="en"><head><BaseHead title={`${p.title} | Matthew Ho`} description={p.deck} /></head><body><Header /><main>
-<p><a href={`${base}projects/`} class="back-link" data-site-base={base}><span aria-hidden="true">←</span> Back</a></p>
+<p><a href={`${base}projects/`} class="back-link" data-site-base={base} aria-label="Back"><span aria-hidden="true">&lt;</span></a></p>
 <p>Project {p.number} · {p.category}</p><h1>{p.title}</h1><p>{p.deck}</p>
 <p><a href={`${base}notebooks/${p.notebook}`} download>Download notebook ↓</a> · <a href={`${base}projects/`}>All projects</a></p>
 <p><strong>Data:</strong> {p.dataset}<br/><strong>Period:</strong> {p.year}<br/><strong>Tools:</strong> {p.tools.join(', ')}</p>
@@ -29,4 +29,4 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
     } catch { /* Direct visits use the Projects link. */ }
   });
 </script></body></html>
-<style>.back-link{display:inline-flex;align-items:center;gap:.45em;min-height:44px;text-decoration:none;font-weight:bold}.back-link:hover{text-decoration:underline}.back-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}figure{margin:2em 0}figcaption{color:rgb(var(--gray));font-size:.85em}h3{margin-bottom:.4em}</style>
+<style>.back-link{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;text-decoration:none;font-weight:bold}.back-link:hover{text-decoration:underline}.back-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}figure{margin:2em 0}figcaption{color:rgb(var(--gray));font-size:.85em}h3{margin-bottom:.4em}</style>

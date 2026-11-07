@@ -70,7 +70,8 @@ test('each case study offers an accessible back arrow with a projects fallback',
     const html = readFileSync(`dist/projects/${slug}/index.html`, 'utf8');
     assert.match(html, /class="back-link"/);
     assert.match(html, /href="\/personal-portfolio\/projects\/"[^>]*class="back-link"/);
-    assert.match(html, /Back/);
+    assert.match(html, /aria-label="Back"/);
+    assert.match(html, /<span aria-hidden="true"[^>]*>&lt;<\/span>/);
   }
 });
 
