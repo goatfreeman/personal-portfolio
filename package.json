@@ -1,0 +1,23 @@
+{
+  "name": "personal-portfolio",
+  "description": "Matthew Ho's personal data project portfolio.",
+  "dependencies": {
+    "@astrojs/mdx": "8.1.3",
+    "@astrojs/sitemap": "3.7.4",
+    "astro": "7.4.7",
+    "typescript": "5.9.3"
+  },
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "private": true,
+  "scripts": {
+    "astro": "astro",
+    "build": "astro build",
+    "check": "astro build && node --test tests/*.test.mjs",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "type": "module"
+}
