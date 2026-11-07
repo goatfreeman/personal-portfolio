@@ -42,3 +42,30 @@ test('local asset and page URLs stay under the Pages base and resolve', () => {
     }
   }
 });
+
+ test('three primary destinations and the course collection are available', () => {
+  for (const path of ['dist/index.html', 'dist/about/index.html', 'dist/projects/index.html']) {
+    assert.ok(existsSync(path), `missing ${path}`);
+    const html = readFileSync(path, 'utf8');
+    for (const href of ['/personal-portfolio/', '/personal-portfolio/about/', '/personal-portfolio/projects/'])
+      assert.ok(html.includes(`href="${href}"`), `${path} missing navigation to ${href}`);
+  }
+  const projects = readFileSync('dist/projects/index.html', 'utf8');
+  assert.ok(projects.includes('ITCS 3162'));
+  for (const slug of slugs) assert.ok(projects.includes(`/personal-portfolio/projects/${slug}/`));
+});
+
+test('about page presents resume credentials and an honest missing portrait', () => {
+  const html = readFileSync('dist/about/index.html', 'utf8');
+  assert.match(html, /Photo coming soon/);
+  assert.match(html, /Azure Fundamentals/);
+  assert.match(html, /August 2025/);
+  assert.match(html, /Japanese-Language Proficiency Test N2/);
+  assert.match(html, /July 2024/);
+  assert.match(html, /UNC Charlotte/);
+});
+
+test('home labels project ordering without claiming dates', () => {
+  const home = readFileSync('dist/index.html', 'utf8');
+  assert.match(home, /Project dates have not been provided/);
+});

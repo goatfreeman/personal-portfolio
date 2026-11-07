@@ -1,0 +1,8 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import profile from '../data/profile.json';
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+---
+<!doctype html><html lang="en"><head><BaseHead title="About Me | Matthew Ho" description="About Matthew Ho and his portfolio." /></head><body><Header /><main class="portfolio-main"><section class="page-intro"><p class="eyebrow">A LITTLE ABOUT ME</p><h1>Hi, I’m Matthew.</h1><p>Welcome to my corner of the internet.</p></section><div class="about-grid"><div class="portrait">{profile.photo ? <img src={`${base}${profile.photo.replace(/^\//, '')}`} alt={profile.photoAlt} /> : <div class="portrait-placeholder"><span aria-hidden="true">MH</span><p>Photo coming soon</p></div>}</div><div><p class="eyebrow">THE PERSON BEHIND THE PROJECTS</p><h2>Nice to meet you.</h2><p>I’m Matthew Ho, and this portfolio brings together my data projects from ITCS 3162 at UNC Charlotte.</p><p>Here you’ll find explorations of data, models, and the limits of their conclusions.</p><a href={`${base}projects/`}>See my projects →</a></div></div><section class="certifications"><p class="eyebrow">LEARNING &amp; GROWTH</p><h2>Certifications</h2>{profile.certifications.length ? <ul>{profile.certifications.map(cert => <li>{cert}</li>)}</ul> : <p>No certifications listed yet.</p>}</section></main><Footer /></body></html>

@@ -9,7 +9,7 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 ---
 <!doctype html><html lang="en"><head><BaseHead title={`${p.title} | Matthew Ho`} description={p.deck} /></head><body><Header /><main>
 <p>Project {p.number} · {p.category}</p><h1>{p.title}</h1><p>{p.deck}</p>
-<p><a href={`${base}notebooks/${p.notebook}`} download>Download notebook ↓</a> · <a href={`${base}#projects`}>All projects</a></p>
+<p><a href={`${base}notebooks/${p.notebook}`} download>Download notebook ↓</a> · <a href={`${base}projects/`}>All projects</a></p>
 <p><strong>Data:</strong> {p.dataset}<br/><strong>Period:</strong> {p.year}<br/><strong>Tools:</strong> {p.tools.join(', ')}</p>
 <section><h2>Question</h2><p>{p.question}</p></section>
 <section><h2>Approach</h2><p>{p.method}</p><ol>{p.steps.map(step => <li><h3>{step.title}</h3><p>{step.text}</p></li>)}</ol></section>
