@@ -75,11 +75,10 @@ test('each case study offers an accessible back arrow with a projects fallback',
   }
 });
 
-test('back arrow and project heading share the same title row', () => {
-  for (const slug of slugs) {
-    const html = readFileSync(`dist/projects/${slug}/index.html`, 'utf8');
-    assert.match(html, /class="project-title-row"[^>]*>\s*<a[^>]*class="back-link"[\s\S]*?<\/a>\s*<h1/);
-  }
+test('back arrow remains at the side of the viewport when scrolling', () => {
+  const page = readFileSync('src/pages/projects/[slug].astro', 'utf8');
+  assert.match(page, /\.back-link\s*\{[^}]*position\s*:\s*fixed/);
+  assert.doesNotMatch(page, /project-title-row/);
 });
 
 test('home labels project ordering without claiming dates', () => {
