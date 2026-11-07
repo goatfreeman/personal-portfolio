@@ -3,4 +3,47 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 const path = Astro.url.pathname;
 const active = path.startsWith(`${base}projects`) ? 'projects' : path.startsWith(`${base}about`) ? 'about' : 'home';
 ---
-<header class="site-header"><nav aria-label="Main navigation" class="nav-inner"><a class="brand" href={base}><span class="brand-mark" aria-hidden="true">MH</span><span>Matthew Ho<small>Data portfolio</small></span></a><div class="nav-links"><a href={base} aria-current={active === 'home' ? 'page' : undefined}>Home</a><a href={`${base}about/`} aria-current={active === 'about' ? 'page' : undefined}>About Me</a><a href={`${base}projects/`} aria-current={active === 'projects' ? 'page' : undefined}>Projects</a></div></nav></header>
+<header><nav aria-label="Main navigation"><h2><a href={base}>Matthew Ho</a></h2><div class="internal-links"><a href={base} class:list={[{active: active === 'home'}]} aria-current={active === 'home' ? 'page' : undefined}>Home</a><a href={`${base}about/`} class:list={[{active: active === 'about'}]} aria-current={active === 'about' ? 'page' : undefined}>About Me</a><a href={`${base}projects/`} class:list={[{active: active === 'projects'}]} aria-current={active === 'projects' ? 'page' : undefined}>Projects</a></div></nav></header>
+<style>
+	header {
+		margin: 0;
+		padding: 0 1em;
+		background: white;
+		box-shadow: 0 2px 8px rgba(var(--black), 5%);
+	}
+	h2 {
+		margin: 0;
+		font-size: 1em;
+	}
+
+	h2 a,
+	h2 a.active {
+		text-decoration: none;
+	}
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	nav a {
+		padding: 1em 0.5em;
+		color: rgb(var(--black));
+		border-bottom: 4px solid transparent;
+		text-decoration: none;
+	}
+	nav a.active {
+		text-decoration: none;
+		border-bottom-color: var(--accent);
+	}
+	.social-links,
+	.social-links a {
+		display: flex;
+	}
+	@media (max-width: 720px) {
+        nav { flex-wrap: wrap; }
+        .internal-links { display: flex; flex-wrap: wrap; }
+		.social-links {
+			display: none;
+		}
+	}
+</style>

@@ -55,9 +55,9 @@ test('local asset and page URLs stay under the Pages base and resolve', () => {
   for (const slug of slugs) assert.ok(projects.includes(`/personal-portfolio/projects/${slug}/`));
 });
 
-test('about page presents resume credentials and an honest missing portrait', () => {
+test('about page presents resume credentials and a linked GitHub profile picture', () => {
   const html = readFileSync('dist/about/index.html', 'utf8');
-  assert.match(html, /Photo coming soon/);
+  assert.match(html, /<a[^>]+href="https:\/\/github\.com\/goatfreeman"[^>]*>\s*<img[^>]+src="https:\/\/avatars\.githubusercontent\.com\/u\/85287294\?v=4"/);
   assert.match(html, /Azure Fundamentals/);
   assert.match(html, /August 2025/);
   assert.match(html, /Japanese-Language Proficiency Test N2/);
@@ -68,4 +68,15 @@ test('about page presents resume credentials and an honest missing portrait', ()
 test('home labels project ordering without claiming dates', () => {
   const home = readFileSync('dist/index.html', 'utf8');
   assert.match(home, /Project dates have not been provided/);
+});
+
+test('starter visual language replaces the custom portfolio skin', () => {
+  const css = readFileSync('src/styles/global.css', 'utf8');
+  const header = readFileSync('src/components/Header.astro', 'utf8');
+  const footer = readFileSync('src/components/Footer.astro', 'utf8');
+  assert.doesNotMatch(css, /Portfolio layout|--green:/);
+  assert.match(css, /background:\s*linear-gradient\(var\(--gray-gradient\)\)/);
+  assert.match(header, /box-shadow:\s*0 2px 8px/);
+  assert.match(header, /border-bottom-color:\s*var\(--accent\)/);
+  assert.match(footer, /text-align:\s*center/);
 });

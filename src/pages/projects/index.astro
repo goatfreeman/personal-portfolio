@@ -5,4 +5,73 @@ import Footer from '../../components/Footer.astro';
 import projects from '../../data/projects.json';
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 ---
-<!doctype html><html lang="en"><head><BaseHead title="Projects | Matthew Ho" description="Explore Matthew Ho’s project collections." /></head><body><Header /><main class="portfolio-main"><section class="page-intro"><p class="eyebrow">THE ARCHIVE</p><h1>Projects<span class="accent-dot">.</span></h1><p>A home for the questions, experiments, and insights along the way.</p></section><section class="collection"><div class="folder-heading"><div><p class="eyebrow">PROJECT COLLECTION / 01</p><h2>ITCS 3162 portfolio</h2><p>Four course projects exploring data, models, and the limits of their conclusions.</p></div><span class="folder-count">4 PROJECTS</span></div><div class="card-grid">{projects.map(p => <article class="project-card"><div class="card-top"><span>{p.number} / {p.category}</span><span aria-hidden="true">↗</span></div><h3><a href={`${base}projects/${p.slug}/`}>{p.title}</a></h3><p>{p.deck}</p><span class="card-footer">VIEW PROJECT →</span></article>)}</div></section></main><Footer /></body></html>
+<!doctype html><html lang="en"><head><BaseHead title="Projects | Matthew Ho" description="Explore Matthew Ho’s project collections." />
+		<style>
+			main {
+				width: 960px;
+			}
+			ul {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 2rem;
+				list-style-type: none;
+				margin: 0;
+				padding: 0;
+			}
+			ul li {
+				width: calc(50% - 1rem);
+			}
+			ul li * {
+				text-decoration: none;
+				transition: 0.2s ease;
+			}
+			ul li:first-child {
+				width: 100%;
+				margin-bottom: 1rem;
+				text-align: center;
+			}
+			ul li:first-child img {
+				width: 100%;
+			}
+			ul li:first-child .title {
+				font-size: 2.369rem;
+			}
+			ul li img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+			ul li a {
+				display: block;
+			}
+			.title {
+				margin: 0;
+				color: rgb(var(--black));
+				line-height: 1;
+			}
+			.date {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+			ul li a:hover h4,
+			ul li a:hover .date {
+				color: rgb(var(--accent));
+			}
+			ul a:hover img {
+				box-shadow: var(--box-shadow);
+			}
+			@media (max-width: 720px) {
+				ul {
+					gap: 0.5em;
+				}
+				ul li {
+					width: 100%;
+					text-align: center;
+				}
+				ul li:first-child {
+					margin-bottom: 0;
+				}
+				ul li:first-child .title {
+					font-size: 1.563em;
+				}
+			}
+		</style></head><body><Header /><main><h1>Projects</h1><p>A home for the questions, experiments, and insights along the way.</p><section><h2>ITCS 3162 portfolio</h2><p>Four course projects exploring data, models, and the limits of their conclusions.</p><ul>{projects.map(p => <li><a href={`${base}projects/${p.slug}/`}><img width="720" src={`${base}${p.charts[0].src}`} alt={p.charts[0].alt} /><h4 class="title">{p.title}</h4><p class="date">{p.number} / {p.category}</p></a><p>{p.deck}</p></li>)}</ul></section></main><Footer /></body></html>
