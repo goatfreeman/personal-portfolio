@@ -14,6 +14,9 @@ test('Quick Quote Builder is discoverable separately and has a descriptive case 
   assert.match(page, /href="\/personal-portfolio\/projects\/"[^>]*class="back-link"/);
   assert.match(page, /aria-label="Back"/);
   assert.match(page, /<img[^>]+src="\/personal-portfolio\/images\/quick-quote-builder-screen\.png"[^>]+alt="[^"]+"/);
+  assert.match(page, /<dialog[^>]+id="image-preview"/);
+  assert.match(page, /aria-label="Close image preview"/);
+  assert.doesNotMatch(page, /target="_blank"/);
   assert.ok(existsSync('dist/images/quick-quote-builder-screen.png'), 'screenshot exists');
   assert.doesNotMatch(page, /Download notebook|Source files|Door Access Quote Tool/);
 });
