@@ -42,7 +42,7 @@ const active = path.startsWith(`${base}projects`) ? 'projects' : path.startsWith
 	}
 	@media (max-width: 720px) {
         nav { grid-template-columns: 1fr; justify-items: center; }
-        nav h2 { padding-top: .5em; }
+        nav h2 a { display: block; box-sizing: border-box; min-height: 44px; padding: .5em; }
         .internal-links { display: flex; justify-content: center; flex-wrap: wrap; }
 		.social-links {
 			display: none;
