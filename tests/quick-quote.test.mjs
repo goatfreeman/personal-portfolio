@@ -13,5 +13,7 @@ test('Quick Quote Builder is discoverable separately and has a descriptive case 
   for (const text of ['Quick Quote Builder', 'Full-Stack Web Application Developer', 'Overview', 'Key capabilities', 'Next.js', 'Supabase', 'Microsoft', 'drafts']) assert.ok(page.includes(text), `missing ${text}`);
   assert.match(page, /href="\/personal-portfolio\/projects\/"[^>]*class="back-link"/);
   assert.match(page, /aria-label="Back"/);
+  assert.match(page, /<img[^>]+src="\/personal-portfolio\/images\/quick-quote-builder-screen\.png"[^>]+alt="[^"]+"/);
+  assert.ok(existsSync('dist/images/quick-quote-builder-screen.png'), 'screenshot exists');
   assert.doesNotMatch(page, /Download notebook|Source files|Door Access Quote Tool/);
 });

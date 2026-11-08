@@ -13,6 +13,7 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
   <h1>Quick Quote Builder</h1>
   <p>A web application that brings item selection, quote calculations, and review into one workflow.</p>
   <section><h2>Overview</h2><p>Quick Quote Builder supports the process of assembling equipment and labor quotes. Users can select items, customize quote lines, save drafts, and review finalized quotes.</p></section>
+  <section><h2>Application preview</h2><figure><a href={`${base}images/quick-quote-builder-screen.png`} target="_blank" rel="noopener noreferrer"><img src={`${base}images/quick-quote-builder-screen.png`} alt="Quick Quote Builder equipment selection screen with item catalog, quote workspace and compatibility ledger" /></a><figcaption>Equipment selection screen. Select the image to view it at full size.</figcaption></figure></section>
   <section><h2>Key capabilities</h2><ul>
     <li>Build quotes from catalog items and customize individual lines.</li>
     <li>Calculate labor, margin, and tax as part of the quote workflow.</li>
@@ -35,6 +36,7 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
   });
 </script></body></html>
 <style>
+figure{margin:1.5em 0} figure img{display:block;width:100%;height:auto;box-shadow:var(--box-shadow)} figcaption{color:rgb(var(--gray));font-size:.8em;margin-top:.6em}
 .back-link{position:fixed;left:max(4px, calc((100vw - 900px) / 2));top:90px;z-index:10;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;text-decoration:none;font-weight:bold;background:#edf0f7;color:#566682;border-radius:50%}
 .back-link:hover{text-decoration:underline}
 .back-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
