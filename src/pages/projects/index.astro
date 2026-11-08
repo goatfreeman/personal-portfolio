@@ -13,6 +13,12 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
     <main>
       <h1>Projects</h1>
       <p>A home for the questions, experiments, and insights along the way.</p>
+      <section class="standalone-project" aria-labelledby="standalone-title">
+        <p class="collection-label">STANDALONE PROJECT</p>
+        <h2 id="standalone-title"><a href={`${base}projects/quick-quote-builder/`}>Quick Quote Builder</a></h2>
+        <p>A full-stack application for building, saving, and reviewing quotes.</p>
+        <a class="project-link" href={`${base}projects/quick-quote-builder/`}>View project <span aria-hidden="true">→</span><span class="sr-only">: Quick Quote Builder</span></a>
+      </section>
       <section class="project-collection" aria-labelledby="collection-title">
         <div class="collection-heading">
           <div><p class="collection-label">PROJECT COLLECTION / 01</p><h2 id="collection-title">ITCS 3162 portfolio</h2><p>Four course projects exploring data, models, and the limits of their conclusions.</p></div>
@@ -29,6 +35,9 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 <style>
 main { width: 960px; }
 .project-collection { background: rgba(var(--gray-light), 35%); border: 1px solid rgb(var(--gray-light)); border-radius: 14px; padding: 1.5rem; }
+.standalone-project { background: rgba(var(--gray-light), 35%); border: 1px solid rgb(var(--gray-light)); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.5rem; }
+.standalone-project h2 { font-size: 1.7rem; }
+.standalone-project p:not(.collection-label) { margin: .5rem 0 1rem; }
 .collection-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: start; }
 .collection-heading h2 { font-size: 1.7rem; }
 .collection-heading p:not(.collection-label) { margin: .5rem 0 1.4rem; }

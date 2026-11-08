@@ -9,7 +9,7 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
 <!doctype html><html lang="en"><head><BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} /></head><body><Header /><main>
 <h1>Curiosity, meet data.</h1><p>A collection of projects exploring data, models, and the questions behind the numbers.</p>
 <p><a href={`${base}projects/`}>Explore projects</a> · <a href={`${base}about/`}>More about me</a></p>
-<h2>What’s happening</h2><p>Explore my ITCS 3162 portfolio and the four data projects it brings together. <a href={`${base}projects/`}>Browse the collection</a>.</p>
+<h2>What’s happening</h2><p>Explore <a href={`${base}projects/quick-quote-builder/`}>Quick Quote Builder</a>, a full-stack application for building and reviewing quotes, alongside my ITCS 3162 data portfolio. <a href={`${base}projects/`}>Browse all projects</a>.</p>
 <h2>Projects to explore</h2><p>Four projects from ITCS 3162. Project dates have not been provided, so these are not ordered by recency.</p>
 <ul>{projects.map(p => <li><a href={`${base}projects/${p.slug}/`}>{p.title}</a> — {p.deck}</li>)}</ul>
 </main><Footer /></body></html>

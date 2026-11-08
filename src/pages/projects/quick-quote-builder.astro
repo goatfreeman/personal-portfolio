@@ -1,0 +1,42 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+---
+<!doctype html>
+<html lang="en">
+<head><BaseHead title="Quick Quote Builder | Matthew Ho" description="A full-stack application for building and reviewing quotes." /></head>
+<body><Header /><main>
+  <a href={`${base}projects/`} class="back-link" data-site-base={base} aria-label="Back"><span aria-hidden="true">&lt;</span></a>
+  <p>Standalone project · Full-stack web application</p>
+  <h1>Quick Quote Builder</h1>
+  <p>A web application that brings item selection, quote calculations, and review into one workflow.</p>
+  <section><h2>Overview</h2><p>Quick Quote Builder supports the process of assembling equipment and labor quotes. Users can select items, customize quote lines, save drafts, and review finalized quotes.</p></section>
+  <section><h2>Key capabilities</h2><ul>
+    <li>Build quotes from catalog items and customize individual lines.</li>
+    <li>Calculate labor, margin, and tax as part of the quote workflow.</li>
+    <li>Save drafts and review finalized quotes, with templates to help organize repeat work.</li>
+    <li>Use authentication workflows with Supabase Auth and Microsoft/Azure SSO routing.</li>
+  </ul></section>
+  <section><h2>My role</h2><p>As Full-Stack Web Application Developer, I developed the quote workflows and designed Supabase PostgreSQL data structures for catalogs, templates, quotes, revisions, and application settings. I implemented authentication workflows and applied defensive programming to handle invalid inputs, missing files, and unexpected behavior.</p></section>
+  <section><h2>Tools</h2><p>Next.js, React, TypeScript, Supabase PostgreSQL, and Supabase Auth.</p></section>
+</main><Footer />
+<script is:inline>
+  document.querySelector('.back-link')?.addEventListener('click', (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    try {
+      const referrer = new URL(document.referrer);
+      if (referrer.origin === location.origin && referrer.pathname.startsWith(event.currentTarget.dataset.siteBase) && history.length > 1) {
+        event.preventDefault();
+        history.back();
+      }
+    } catch { /* Direct visits use the Projects link. */ }
+  });
+</script></body></html>
+<style>
+.back-link{position:fixed;left:max(4px, calc((100vw - 900px) / 2));top:90px;z-index:10;display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;text-decoration:none;font-weight:bold;background:#edf0f7;color:#566682;border-radius:50%}
+.back-link:hover{text-decoration:underline}
+.back-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+@media(max-width:850px){main{box-sizing:border-box;max-width:100%;width:100%;padding-left:56px;padding-right:16px}}
+</style>
